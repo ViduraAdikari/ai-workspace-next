@@ -1,0 +1,30 @@
+{
+  "Navbar": {
+    "translate": "Select Language",
+    "switchTheme": "Switch Theme"
+  },
+  "Home": {
+    "workspace": "Workspace",
+    "toDashboard": "To Dashboard",
+    "Metadata": {
+      "title": "AI Workspace | Home",
+      "description": "Workspace chat app to communicate with text messages among the teammates using channels."
+    },
+    "title": "AI Workspace",
+    "subTitle": "Team message board for workspace.",
+    "GuestForm": {
+      "nameInputLabel": "Enter your name",
+      "nameInputPlaceholder": "Nickname",
+      "nameMin": "Nickname must be at least 3 characters",
+      "nameMax": "Nickname must be at most 20 characters",
+      "submitButton": "NEXT",
+      "helperText": "A name required to begin."
+    }
+  },
+  "DashboardNavLinks": {
+    "home": "Workspace"
+  },
+  "DashboardActions": {
+    "closeSideBar": "Close Sidebar"
+  }
+}
