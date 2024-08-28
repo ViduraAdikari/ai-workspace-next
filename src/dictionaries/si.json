@@ -1,0 +1,30 @@
+{
+  "Navbar": {
+    "translate": "භා ෂා ව තෝ රා ගන්න",
+    "switchTheme": "වර්න / තේමා ව"
+  },
+  "Home": {
+    "workspace": "වැ ඩබිම",
+    "toDashboard": "ආයුබො වන්",
+    "Metadata": {
+      "title": "AI වැ ඩබිම | ආයුබො වන්",
+      "description": "කණ්ඩා යම අතර කෙටි පණිවිඩ සමඟ සන්නිවේදනය කිරීමට, වැ ඩබිම චැ ට්."
+    },
+    "title": "AI වැ ඩබිම චැ ට්",
+    "subTitle": "කණ්ඩා යමට පණිවිඩ සමඟ සන්නිවේදනය කිරීමට.",
+    "GuestForm": {
+      "nameInputLabel": "ඔබගේ නම",
+      "nameInputPlaceholder": "එක නමක් / සුරතල් නමක්",
+      "nameMin": "නම අවම වශයෙන් අකුරු 3ක් වත් විය යුතුය",
+      "nameMax": "නමට වැ ඩිම අකුරු 20කි",
+      "submitButton": "ඊලගට",
+      "helperText": "ආරම්බ කිරීමට නමක් අවශ්\u200Dයයි"
+    }
+  },
+  "DashboardNavLinks": {
+    "home": "වැ ඩබිම"
+  },
+  "DashboardActions": {
+    "closeSideBar": "පැ ති මෙනුව වසන්න"
+  }
+}
