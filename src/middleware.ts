@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import {HOME_LINK} from "@/const/values";
+import {COOKIES_STORAGE_KEYS, dashboardNavItems, HOME_LINK} from "@/const/values";
 import createMiddleware from "next-intl/middleware";
 import {localePrefix, locales} from "@/localize/config";
 
@@ -23,6 +23,17 @@ export async function middleware(request: NextRequest) {
         request.url,
       ),
     );
+  }
+
+  /** Guard dashboard routes from guests. */
+  if (pathname.indexOf(dashboardNavItems.home.link) > -1) {
+    const token = request.cookies.get(COOKIES_STORAGE_KEYS.user);
+
+    if (token) {
+      return;
+    }
+
+    return NextResponse.redirect(new URL(getRedirectHomeUrlWithLocale(request), request.url));
   }
 }
 
