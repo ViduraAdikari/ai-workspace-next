@@ -4,7 +4,7 @@ import {unstable_setRequestLocale} from "next-intl/server";
 import {useTranslations} from "next-intl";
 import {cookies} from "next/headers";
 import {DashboardDictionary} from "@/components/Layout/DashboardLayout";
-import StoreWrapper from "@/app/lib/StoreWrapper";
+import DashboardStoreWrapper from "@/app/lib/DashboardStoreWrapper";
 
 type WorkspaceLayoutProps = {
   drawer: React.ReactNode,
@@ -35,13 +35,13 @@ const WorkspaceLayout: React.FC<WorkspaceLayoutProps> = ({
   }
 
   return (
-    <StoreWrapper switchThemeLocale={t("switchTheme")}
-                  locale={locale}
-                  dictionary={dictionary}
-                  drawer={drawer}
-                  cookieTheme={theme?.value as ("light" | "dark")}>
+    <DashboardStoreWrapper switchThemeLocale={t("switchTheme")}
+                           locale={locale}
+                           dictionary={dictionary}
+                           drawer={drawer}
+                           cookieTheme={theme?.value as ("light" | "dark")}>
       {children}
-    </StoreWrapper>
+    </DashboardStoreWrapper>
   )
 }
 

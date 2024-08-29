@@ -1,6 +1,4 @@
-"use client";
-
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -8,17 +6,22 @@ import {useTranslations} from "next-intl";
 import {object, string} from "yup";
 import {useFormik} from "formik";
 import UIButton from "@/components/Buttons";
-import {useRouter} from "@/localize/navigation";
-import {dashboardNavItems} from "@/const/values";
 
-type FormValues = {
+export type SigninFormValues = {
   nickname: string | null
 }
 
-const GuestForm: React.FC = () => {
-  const t = useTranslations("Home.GuestForm");
+type GuestFormProps = {
+  isDataLoading: boolean
+  authError: string | null
+  onSigninSubmit: (values: SigninFormValues) => void
+}
 
-  const router = useRouter();
+const GuestForm: React.FC<GuestFormProps> = (props: PropsWithChildren<GuestFormProps>) => {
+
+  const {isDataLoading, authError, onSigninSubmit} = props;
+
+  const t = useTranslations("Home.GuestForm");
 
   const validationSchema = object({
     nickname: string()
@@ -34,15 +37,10 @@ const GuestForm: React.FC = () => {
     },
     validateOnChange: true,
     validationSchema: validationSchema,
-    onSubmit: (values: FormValues) => {
-      console.log("FormValues", values);
-      redirectToDashboard();
+    onSubmit: (values: SigninFormValues) => {
+      onSigninSubmit(values);
     },
   });
-
-  const redirectToDashboard = () => {
-    router.push(dashboardNavItems.home.link);
-  }
 
   return (
     <React.Fragment>
@@ -72,14 +70,14 @@ const GuestForm: React.FC = () => {
               value={formik.values.nickname || ""}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={formik.touched.nickname && Boolean(formik.errors.nickname)}
-              helperText={formik.touched.nickname && formik.errors.nickname}
+              error={(authError !== null) || (formik.touched.nickname && Boolean(formik.errors.nickname))}
+              helperText={authError || (formik.touched.nickname && formik.errors.nickname)}
             />
 
             <UIButton variant="primary"
                       sx={{mt: 4, width: {sm: "auto", xs: '100%'}}}
                       type="submit"
-                      disabled={formik.values.nickname === null}>
+                      disabled={formik.values.nickname === null || isDataLoading}>
               {t("submitButton")}
             </UIButton>
           </Box>

@@ -1,8 +1,8 @@
 import {FC} from "react";
-import Typography from "@mui/material/Typography";
+import CurrentUser from "@/cartons/user/CurrentUser";
 
 const WorkspaceDrawer: FC = () => {
-  return <Typography>Drawer slot</Typography>
+  return <CurrentUser/>
 }
 
 export default WorkspaceDrawer;

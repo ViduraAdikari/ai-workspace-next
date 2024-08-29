@@ -2,9 +2,21 @@
 type UISizes = 'small' | 'medium' | 'large';
 export type ThemeTypes = "light" | "dark";
 
-type NavItemData = {
-  label: string
-  link: string
+export type HeadingTypes = 'h1' | 'h2';
+
+export type LoginResponseData = {
+  isAuth: boolean
+  displayName: string
 }
 
-export type HeadingTypes = 'h1' | 'h2';
+export type AvatarIcon = {
+  icon: any
+  color: string
+  alt: string
+}
+
+interface IGuest {
+  id: string
+  nickname: string
+  avatar?: AvatarIcon
+}
