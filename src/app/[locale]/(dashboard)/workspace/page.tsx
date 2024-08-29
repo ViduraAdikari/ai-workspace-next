@@ -1,15 +1,9 @@
-import React, {FC} from 'react';
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import React, {FC} from "react";
+import ChannelMessaging from "@/cartons/workspace/ChannelMessaging";
 
 const page: FC = () => {
-  return (
-    <Stack>
-        <Typography>
-            Workspace
-        </Typography>
-    </Stack>
-  )
+
+  return <ChannelMessaging/>
 }
 
 export default page;
