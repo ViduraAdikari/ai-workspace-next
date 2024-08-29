@@ -1,8 +1,8 @@
 import {FC} from "react";
-import CurrentUser from "@/cartons/user/CurrentUser";
+import WorkspaceDrawer from "./workspaceDrawer/WorkspaceDrawer";
 
-const WorkspaceDrawer: FC = () => {
-  return <CurrentUser/>
+const Drawer: FC = () => {
+  return <WorkspaceDrawer/>
 }
 
-export default WorkspaceDrawer;
+export default Drawer;

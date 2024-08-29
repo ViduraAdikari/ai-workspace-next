@@ -12,7 +12,7 @@ import Drawer from "@mui/material/Drawer";
 import ThemeSwitch from "@/components/Switch";
 import {styled, Theme, ThemeProvider} from "@mui/material/styles";
 import Logo from "@/components/Logo";
-import {dashboardNavItems, isRoundedBorders, MOBILE_MAX_SCREEN_WIDTH} from "@/const/values";
+import {MOBILE_MAX_SCREEN_WIDTH} from "@/const/values";
 import Stack from "@mui/material/Stack";
 import AppBar from "@mui/material/AppBar";
 import {getTheme} from "@/util/theme/Theme";
@@ -21,7 +21,6 @@ import Container from "@mui/material/Container";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import LocaleSwitcher from "@/components/LocaleSwitcher/LocaleSwitcher";
-import {Link, usePathname} from "@/localize/navigation";
 import Typography from "@mui/material/Typography";
 import {ThemeTypes} from "@/types/types";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
@@ -63,10 +62,11 @@ const Main = styled("main", {shouldForwardProp: (prop) => prop !== "open"})<{
   }),
 }));
 
-const DrawerHeader = styled("div")(({theme}) => ({
+const DrawerFooter = styled("div")(({theme}) => ({
   display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
+  flexDirection: "column",
+  // alignItems: "center",
+  padding: theme.spacing(1, 0),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
@@ -74,8 +74,6 @@ const DrawerHeader = styled("div")(({theme}) => ({
 
 const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildren<DashboardLayoutProps>) => {
   const {cookieTheme, children, drawer, switchThemeLocale, locale, dictionary} = props;
-
-  const pathname = usePathname();
 
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -121,15 +119,25 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
   };
 
   const drawerElement = (
-    <Box sx={{height: "calc(100% - 64px)"}}>
+    <Stack sx={{
+      height: "calc(100% - 64px)",
+    }}
+           justifyContent="space-between">
       {drawer}
-      <DrawerHeader>
-        <Divider/>
-        <IconButton onClick={handleDrawerClose} title={dictionary.closeSideBar}>
-          {theme.direction === "ltr" ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-        </IconButton>
-      </DrawerHeader>
-    </Box>
+      <DrawerFooter>
+        <Divider sx={{mb: 1}}/>
+        <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{pl: 2}}>
+          <Typography variant="caption" sx={{
+            color: theme => theme.palette.text.disabled
+          }}>
+            version 1.0.0
+          </Typography>
+          <IconButton onClick={handleDrawerClose} title={dictionary.closeSideBar}>
+            {theme.direction === "ltr" ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+          </IconButton>
+        </Stack>
+      </DrawerFooter>
+    </Stack>
   );
 
   return (
@@ -208,7 +216,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
 
           <main>
             <Main open={isDrawerOpen} direction={theme.direction}>
-              <DrawerHeader/>
+              <DrawerFooter/>
               {children}
             </Main>
           </main>
