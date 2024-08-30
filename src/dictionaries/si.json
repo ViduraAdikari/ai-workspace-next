@@ -26,5 +26,17 @@
   },
   "DashboardActions": {
     "closeSideBar": "පැ ති මෙනුව වසන්න"
+  },
+  "Workspace": {
+    "Metadata": {
+      "title": "AI Workspace | වැ ඩබිම",
+      "description": "කණ්ඩා යම අතර කෙටි පණිවිඩ සමඟ සන්නිවේදනය කිරීමට, වැ ඩබිම චැ ට්."
+    },
+    "Channels": {
+      "channels": "නා ලිකා වන්:"
+    },
+    "User": {
+      "currentUser": "ඇතුලත් වූ අය (ඔබ):"
+    }
   }
 }

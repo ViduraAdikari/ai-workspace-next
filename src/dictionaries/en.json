@@ -26,5 +26,17 @@
   },
   "DashboardActions": {
     "closeSideBar": "Close Sidebar"
+  },
+  "Workspace": {
+    "Metadata": {
+      "title": "AI Workspace | Workspace",
+      "description": "Workspace chat app channels and messaging area for collaboration and get it done."
+    },
+    "Channels": {
+      "channels": "Channels:"
+    },
+    "User": {
+      "currentUser": "Current user (you):"
+    }
   }
 }

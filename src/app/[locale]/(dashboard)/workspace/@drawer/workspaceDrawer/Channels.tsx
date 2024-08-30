@@ -7,12 +7,15 @@ import Typography from "@mui/material/Typography";
 import ItemList, {DrawerItem} from "@/components/Lists/ItemList";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {setChannels, setSelectedChannel} from "@/store/features/workspace/workspaceSlice";
+import {useTranslations} from "next-intl";
 
 type ChannelListProps = {
   remoteChannels: IChannel[] | null
 }
 
 const Channels: FC<ChannelListProps> = (props: PropsWithChildren<ChannelListProps>) => {
+  const t = useTranslations("Workspace.Channels");
+
   const {remoteChannels} = props;
 
   const channels: IChannel[] | null = useAppSelector(state => state.workspace.channels);
@@ -45,7 +48,7 @@ const Channels: FC<ChannelListProps> = (props: PropsWithChildren<ChannelListProp
 
   return (
     <Box sx={{}}>
-      <ItemList itemListTitle="Channels:"
+      <ItemList itemListTitle={t("channels")}
                 drawerItems={drawerNavItems}
                 selectedItemKey={selectedChannel?.id}
                 onItemClicked={handleOnChannelClicked}/>
