@@ -7,7 +7,7 @@
     "workspace": "Välkommen",
     "toDashboard": "Välkommen",
     "Metadata": {
-      "title": "AI Arbetsyta | Välkommen",
+      "title": "AI Workspace | Välkommen",
       "description": "Workspace-chattapp för att kommunicera med textmeddelanden mellan lagkamraterna med hjälp av kanaler."
     },
     "title": "AI Arbetsyta",
@@ -26,5 +26,17 @@
   },
   "DashboardActions": {
     "closeSideBar": "Stäng sidofältet"
+  },
+  "Workspace": {
+    "Metadata": {
+      "title": "AI Workspace | Workspace",
+      "description": "Workspace chat app channels and messaging area for collaboration and get it done."
+    },
+    "Channels": {
+      "channels": "Kanaler:"
+    },
+    "User": {
+      "currentUser": "nuvarande användare (du):"
+    }
   }
 }

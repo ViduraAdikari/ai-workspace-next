@@ -1,3 +1,6 @@
+const API_SERVER_URL = process.env.NEXT_SERVER_API_URL || "";
+const API_PUBLIC_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
 export const isRoundedBorders: boolean = false;
 
 export const MOBILE_MAX_SCREEN_WIDTH = 768;
@@ -13,6 +16,11 @@ export const COOKIES_STORAGE_KEYS = {
 }
 
 export const AUTH_FRONT_API = "/auth/api";
+
+export const API = {
+  graphQLSSRApi: API_SERVER_URL + "graphql",
+  graphQLApi: API_PUBLIC_URL + "graphql",
+}
 
 export const BackgroundColors = {
   MintLeaf: "#00b894",
