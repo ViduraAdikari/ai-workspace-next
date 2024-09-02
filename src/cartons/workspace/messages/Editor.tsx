@@ -7,8 +7,9 @@ import {useAppSelector} from "@/store/hooks";
 import {createGuest} from "@/app/lib/util";
 import {useChannelData} from "@/cartons/workspace/providers/useChannelData";
 import {IGuest, IMessage} from "@/store/features/workspace/workspaceReducerTypes";
-import {setNewMessage} from "@/store/features/workspace/workspaceSlice";
+import {setNewMessage, updateMessageRemoteStatus} from "@/store/features/workspace/workspaceSlice";
 import {useTranslations} from "next-intl";
+import {usePostMessage} from "@/cartons/workspace/hooks/usePostMessage";
 
 const Editor: React.FC = () => {
   const {channelID} = useChannelData();
@@ -25,22 +26,56 @@ const Editor: React.FC = () => {
   // to autofocus input on channel change
   const [toggleFocus, setToggleFocus] = useState(false);
 
+  const time = new Date();
+  const newMessage: IMessage | null = messageText ? {
+    id: time.getTime() + "", text: messageText,
+    user: user, time: time
+  } : null;
+
+  const {error, data} = usePostMessage(isSubmitted, channelID, newMessage);
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    setTextMessage(null);
+    setIsSubmitted(false);
+
+    const timeout = setTimeout(() => {
+      dispatch(updateMessageRemoteStatus({channelID, message: data})); // updates client only status.
+    }, 1800);
+
+    return () => {
+      clearTimeout(timeout);
+    }
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!error) {
+      return;
+    }
+    setIsSubmitted(false);
+    alert(error);
+  }, [error]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isSubmitted || !newMessage) {
+      return;
+    }
+    // preview set to client until added to remote
+    dispatch(setNewMessage({channelID: channelID,
+      message: {...newMessage, time: time.getTime(), isClientOnly: true}}));
+  }, [isSubmitted]); // eslint-disable-line react-hooks/exhaustive-deps
+
   const handleMessageChange = (text: string) => {
     setTextMessage(text);
   }
 
   const handleOnSubmit = () => {
-    if (!messageText) {
+    if (!newMessage) {
       return;
     }
-
-    const time = new Date();
-    const newMessage: IMessage = {
-      id: time.getTime() + "", text: messageText,
-      user: user, time: time
-    };
-
-    dispatch(setNewMessage({channelID: channelID, message: {...newMessage, isClientOnly: true}}));
+    // dispatch(setNewMessage({channelID: channelID, message: {...newMessage, isClientOnly: true}}));
     setIsSubmitted(true);
   }
 

@@ -6,6 +6,7 @@ const isServer = typeof window === "undefined";
 export const getApolloClient = () => {
   const httpLink = createHttpLink({
     uri: isServer ? API.graphQLSSRApi : API.graphQLApi,
+    credentials: "same-origin",
   })
 
   return new ApolloClient({

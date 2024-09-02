@@ -8,6 +8,7 @@ import ItemList, {DrawerItem} from "@/components/Lists/ItemList";
 import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {setChannels, setSelectedChannel} from "@/store/features/workspace/workspaceSlice";
 import {useTranslations} from "next-intl";
+import {IChannel} from "@/store/features/workspace/workspaceReducerTypes";
 
 type ChannelListProps = {
   remoteChannels: IChannel[] | null

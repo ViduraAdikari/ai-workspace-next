@@ -6,7 +6,7 @@ import {
   ISetNewMessagePayload
 } from "@/store/features/workspace/payloadTypes";
 import {createGuest} from "@/app/lib/util";
-import {addMessagesToChannel, updateSelectedChannel} from "@/store/features/workspace/helper";
+import {addMessagesToChannel, setMessageRemoteStatus, updateSelectedChannel} from "@/store/features/workspace/helper";
 import {WorkspaceState} from "@/store/features/workspace/workspaceReducerTypes";
 
 const initialState: WorkspaceState = {
@@ -42,6 +42,13 @@ export const workspaceSlice = createSlice({
 
       state.channels = addMessagesToChannel(state.channels.slice(), action.payload.channelID, action.payload.message);
     },
+    updateMessageRemoteStatus: (state, action: PayloadAction<ISetNewMessagePayload>) => {
+      if (!state.channels) {
+        return;
+      }
+
+      state.channels = setMessageRemoteStatus(state.channels.slice(), action.payload.channelID, action.payload.message);
+    },
   }
 });
 
@@ -51,6 +58,7 @@ export const {
   setChannels,
   setSelectedChannel,
   setNewMessage,
+  updateMessageRemoteStatus
 } = workspaceSlice.actions;
 
 export default workspaceSlice.reducer;

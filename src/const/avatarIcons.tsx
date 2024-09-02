@@ -11,7 +11,7 @@ import windmill from "../assets/avatar/landmark-netherlands-windmill-1.webp";
 import battery from "../assets/avatar/renewable-energy-battery-leaf.webp";
 import windTurbine from "../assets/avatar/renewable-energy-wind-turbine-2.webp";
 import {BackgroundColors} from "./values";
-import {AvatarIcon} from "@/types/types";
+import {AvatarIcon} from "@/store/features/workspace/workspaceReducerTypes";
 
 const avatarIcons: AvatarIcon[] = [
   {icon: baggage, color: BackgroundColors.MintLeaf, alt: "Baggage"},

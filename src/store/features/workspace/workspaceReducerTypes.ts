@@ -15,7 +15,7 @@ interface IMessage {
   id: string
   user: IGuest
   text: string
-  time: Date
+  time: Date | number
   isClientOnly?: boolean // true if the message is displayed before refreshing from backend
 }
 
