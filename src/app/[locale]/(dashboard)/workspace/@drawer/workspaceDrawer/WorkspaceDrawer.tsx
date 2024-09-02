@@ -7,6 +7,7 @@ import {getSSRApolloClient} from "@/app/lib/getSSRApolloClient";
 import {GET_CHANNELS} from "@/app/[locale]/(dashboard)/workspace/@drawer/workspaceDrawer/graphql/queries/getChannels";
 import {getTranslations} from "next-intl/server";
 import Feedback from "@/components/Feedback";
+import {IChannel} from "@/store/features/workspace/workspaceReducerTypes";
 
 const WorkspaceDrawer: FC = async () => {
   const t = await getTranslations("Workspace.User");      {/*<Typography variant="caption" component="h3" sx={{*/}

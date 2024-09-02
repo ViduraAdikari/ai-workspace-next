@@ -35,4 +35,30 @@ const addMessagesToChannel = (channels: IChannel[], channelID: string, newMessag
   return channels;
 }
 
-export {updateSelectedChannel, addMessagesToChannel};
+/**
+ * update the isClientOnly status of local state message after post success
+ * @param channels
+ * @param channelID
+ * @param remoteMessage
+ */
+const setMessageRemoteStatus = (channels: IChannel[], channelID: string, remoteMessage: IMessage): IChannel[] => {
+  const postedChannel: IChannel | undefined = channels.find((channel: IChannel) => channel.id === channelID);
+  if (!postedChannel || !postedChannel.messages) {
+    return channels;
+  }
+
+  const channelMessages: IMessage[] = postedChannel.messages.slice();
+
+  const clientOnlyMessageIndex: number = channelMessages.findIndex((message: IMessage) =>
+    message.id === remoteMessage.id);
+
+  if (clientOnlyMessageIndex < 0) {
+    return channels;
+  }
+
+  channelMessages[clientOnlyMessageIndex].isClientOnly = undefined;
+  postedChannel.messages = channelMessages;
+  return channels;
+}
+
+export {updateSelectedChannel, addMessagesToChannel, setMessageRemoteStatus};
