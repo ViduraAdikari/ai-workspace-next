@@ -8,15 +8,3 @@ export type LoginResponseData = {
   isAuth: boolean
   displayName: string
 }
-
-export type AvatarIcon = {
-  icon: any
-  color: string
-  alt: string
-}
-
-interface IGuest {
-  id: string
-  nickname: string
-  avatar?: AvatarIcon
-}

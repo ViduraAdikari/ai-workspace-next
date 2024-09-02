@@ -12,7 +12,7 @@ import Drawer from "@mui/material/Drawer";
 import ThemeSwitch from "@/components/Switch";
 import {styled, Theme, ThemeProvider} from "@mui/material/styles";
 import Logo from "@/components/Logo";
-import {MOBILE_MAX_SCREEN_WIDTH} from "@/const/values";
+import {DRAWER_WIDTH, MOBILE_MAX_SCREEN_WIDTH} from "@/const/values";
 import Stack from "@mui/material/Stack";
 import AppBar from "@mui/material/AppBar";
 import {getTheme} from "@/util/theme/Theme";
@@ -28,7 +28,7 @@ import {setIsDrawerOpen} from "@/store/features/workspace/workspaceSlice";
 import {ApolloProvider} from "@apollo/client";
 import {getApolloClient} from "@/app/lib/getApolloClient";
 
-export const drawerWidth = 260;
+export const headerHeight = 64;
 
 export type DashboardDictionary = {
   translate: string
@@ -49,25 +49,28 @@ const Main = styled("main", {shouldForwardProp: (prop) => prop !== "open"})<{
   direction?: "ltr" | "rtl";
 }>(({theme, open, direction}) => ({
   flexGrow: 1,
+  marginTop: `${headerHeight}px`,
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "56px",
+  },
   transition: theme.transitions.create("margin", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  marginLeft: `-${drawerWidth}px`,
+  marginLeft: `-${DRAWER_WIDTH}px`,
   ...((direction || direction === "rtl") && {marginRight: 0}),
   ...(open && {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    ...((!direction || direction === "ltr") ? {marginLeft: 0} : {marginRight: `${drawerWidth}px`,}),
+    ...((!direction || direction === "ltr") ? {marginLeft: 0} : {marginRight: `${DRAWER_WIDTH}px`,}),
   }),
 }));
 
 const DrawerFooter = styled("div")(({theme}) => ({
   display: "flex",
   flexDirection: "column",
-  // alignItems: "center",
   padding: theme.spacing(1, 0),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
@@ -121,10 +124,9 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
   };
 
   const drawerElement = (
-    <Stack sx={{
-      height: "calc(100% - 64px)",
-    }}
-           justifyContent="space-between">
+    <Stack justifyContent="space-between" sx={{
+      height: `calc(100% - ${headerHeight}px)`,
+    }}>
       {drawer}
       <DrawerFooter>
         <Divider sx={{mb: 1}}/>
@@ -146,83 +148,76 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
     <ApolloProvider client={getApolloClient()}>
       <ThemeProvider theme={theme}>
         <CssBaseline/>
-        <Container maxWidth={false} sx={{
-          px: {xs: 2, sm: 2, lg: 1}
-        }}>
+        <Container maxWidth={false} sx={{px: "0 !important",}}>
           <Box sx={{display: "flex", mt: 0}}>
 
-            <header>
-              <AppBar position="fixed"
-                      sx={{
-                        bgcolor: (theme: Theme) => theme.palette.primary.contrastText,
-                        color: (theme: Theme) => theme.palette.text.primary,
-                        zIndex: (theme) => theme.zIndex.drawer + 1,
-                        borderBottom: "2px solid",
-                        borderBottomColor: (theme: Theme) => theme.palette.primary.main,
-                      }}>
-                <Toolbar sx={{px: {md: 0, sm: 2}}}>
-                  <IconButton
-                    color="inherit"
-                    aria-label="toggle drawer"
-                    edge={theme.direction === "ltr" ? "start" : "end"}
-                    onClick={toggleDrawer}
-                    sx={{mx: 2}}
-                    title="open drawer"
-                  >
-                    <MenuIcon/>
-                  </IconButton>
+            <AppBar position="fixed"
+                    sx={{
+                      bgcolor: (theme: Theme) => theme.palette.primary.contrastText,
+                      color: (theme: Theme) => theme.palette.text.primary,
+                      zIndex: (theme) => theme.zIndex.drawer + 1,
+                      borderBottom: "2px solid",
+                      borderBottomColor: (theme: Theme) => theme.palette.primary.main,
+                    }}>
+              <Toolbar sx={{px: {md: 0, sm: 2}}}>
+                <IconButton
+                  color="inherit"
+                  aria-label="toggle drawer"
+                  edge={theme.direction === "ltr" ? "start" : "end"}
+                  onClick={toggleDrawer}
+                  sx={{mx: 2}}
+                  title="open drawer"
+                >
+                  <MenuIcon/>
+                </IconButton>
 
-                  <Stack direction="row" justifyContent="space-between" alignItems="center"
-                         sx={{width: "100%"}}>
-                    <Box>
-                      <Logo/>
+                <Stack direction="row" justifyContent="space-between" alignItems="center"
+                       sx={{width: "100%"}}>
+                  <Box>
+                    <Logo/>
+                  </Box>
+
+                  <Stack direction="row" alignItems="center" spacing={{xs: 1, sm: 2}} mr={3}>
+
+                    <LocaleSwitcher currentLocale={locale} tooltipTitle={dictionary.translate} withoutLabel/>
+
+                    <ThemeSwitch onChange={handleOnThemeChange} isChecked={isDark}
+                                 dictionaryTitle={switchThemeLocale}/>
+                    <Box title="Logout" sx={{pt: 1, cursor: "pointer"}}
+                      // onClick={handleLogout}
+                    >
+                      <PowerSettingsNewIcon/>
                     </Box>
-
-                    <Stack direction="row" alignItems="center" spacing={2} mr={3}>
-
-                      <LocaleSwitcher currentLocale={locale} tooltipTitle={dictionary.translate} withoutLabel/>
-
-                      <ThemeSwitch onChange={handleOnThemeChange} isChecked={isDark}
-                                   dictionaryTitle={switchThemeLocale}/>
-                      <Box title="Logout" sx={{pt: 1, cursor: "pointer"}}
-                        // onClick={handleLogout}
-                      >
-                        <PowerSettingsNewIcon/>
-                      </Box>
-                    </Stack>
                   </Stack>
-                </Toolbar>
-              </AppBar>
+                </Stack>
+              </Toolbar>
+            </AppBar>
 
-              <nav>
-                <Drawer
-                  anchor={theme.direction === "ltr" ? "left" : "right"}
-                  variant="persistent"
-                  open={isDrawerOpen}
-                  ModalProps={{
-                    keepMounted: true, // Better open performance on mobile.
-                  }}
-                  sx={{
-                    bgcolor: "transparent",
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    "& .MuiDrawer-paper": {
-                      width: drawerWidth,
-                      boxSizing: "border-box",
-                    },
-                  }}>
-                  <Toolbar/>
-                  {drawerElement}
-                </Drawer>
-              </nav>
-            </header>
+            <nav>
+              <Drawer
+                anchor={theme.direction === "ltr" ? "left" : "right"}
+                variant="persistent"
+                open={isDrawerOpen}
+                ModalProps={{
+                  keepMounted: true, // Better open performance on mobile.
+                }}
+                sx={{
+                  bgcolor: "transparent",
+                  width: DRAWER_WIDTH,
+                  flexShrink: 0,
+                  "& .MuiDrawer-paper": {
+                    width: DRAWER_WIDTH,
+                    boxSizing: "border-box",
+                  },
+                }}>
+                <Toolbar/>
+                {drawerElement}
+              </Drawer>
+            </nav>
 
-            <main>
-              <Main open={isDrawerOpen} direction={theme.direction}>
-                <DrawerFooter/>
-                {children}
-              </Main>
-            </main>
+            <Main open={isDrawerOpen} direction={theme.direction}>
+              {children}
+            </Main>
           </Box>
         </Container>
       </ThemeProvider>

@@ -1,23 +1,13 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IGuest} from "@/types/types";
-import {INickNamePayload, ISelectedChannelPayload, ISetChannelsPayload} from "@/store/features/workspace/payloadTypes";
+import {
+  INickNamePayload,
+  ISelectedChannelPayload,
+  ISetChannelsPayload,
+  ISetNewMessagePayload
+} from "@/store/features/workspace/payloadTypes";
 import {createGuest} from "@/app/lib/util";
-import {updateSelectedChannel} from "@/store/features/workspace/helper";
-
-export interface WorkspaceState {
-  /**
-   * is left nav drawer open in Dashboard layout
-   */
-  isDrawerOpen: boolean;
-  /**
-   * user who signed in as a guest.
-   */
-  guest: IGuest | null
-  /**
-   * channels from the api
-   */
-  channels: IChannel[] | null
-}
+import {addMessagesToChannel, updateSelectedChannel} from "@/store/features/workspace/helper";
+import {WorkspaceState} from "@/store/features/workspace/workspaceReducerTypes";
 
 const initialState: WorkspaceState = {
   isDrawerOpen: true,
@@ -45,6 +35,13 @@ export const workspaceSlice = createSlice({
 
       state.channels = updateSelectedChannel(action.payload.id, state.channels.slice());
     },
+    setNewMessage: (state, action: PayloadAction<ISetNewMessagePayload>) => {
+      if (!state.channels) {
+        return;
+      }
+
+      state.channels = addMessagesToChannel(state.channels.slice(), action.payload.channelID, action.payload.message);
+    },
   }
 });
 
@@ -53,6 +50,7 @@ export const {
   setGuestNickName,
   setChannels,
   setSelectedChannel,
+  setNewMessage,
 } = workspaceSlice.actions;
 
 export default workspaceSlice.reducer;

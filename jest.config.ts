@@ -56,7 +56,7 @@ const config: Config = {
   // A path to a custom dependency extractor
   // dependencyExtractor: undefined,
 
-  // Make calling deprecated APIs throw helpful error messages
+  // Make calling deprecated APIs throw helpful error providers
   // errorOnDeprecated: false,
 
   // The default configuration for fake timers

@@ -9,7 +9,14 @@ import {getTranslations} from "next-intl/server";
 import Feedback from "@/components/Feedback";
 
 const WorkspaceDrawer: FC = async () => {
-  const t = await getTranslations("Workspace.User");
+  const t = await getTranslations("Workspace.User");      {/*<Typography variant="caption" component="h3" sx={{*/}
+      {/*  px: 3,*/}
+      {/*  py: .5,*/}
+      {/*  my: 0,*/}
+      {/*  bgcolor: theme => theme.palette.mode === "dark" ? "#37474F" : "#CFD8DC",*/}
+      {/*}}>*/}
+      {/*  {itemListTitle}*/}
+      {/*</Typography>*/}
 
   const client = await getSSRApolloClient();
   const {error, data} = await client.query<{ channels: IChannel[] }>({query: GET_CHANNELS});

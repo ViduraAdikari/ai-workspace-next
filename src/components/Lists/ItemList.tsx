@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import Toolbar from "@mui/material/Toolbar";
 
 export type DrawerItem = {
   key: string
@@ -28,14 +29,11 @@ const ItemList: FC<ItemListProps> = (props: PropsWithChildren<ItemListProps>) =>
 
   return (
     <Box>
-      <Typography variant="caption" component="h3" sx={{
-        px: 3,
-        py: .5,
-        my: 0,
-        bgcolor: theme => theme.palette.mode === "dark" ? "#37474F" : "#CFD8DC",
+      <Toolbar sx={{
+        bgcolor: theme => theme.palette.secondary.dark,
       }}>
         {itemListTitle}
-      </Typography>
+      </Toolbar>
       <List sx={{
         py: 0,
         "& .Mui-selected": {

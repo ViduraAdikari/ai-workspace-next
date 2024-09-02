@@ -37,6 +37,12 @@
     },
     "User": {
       "currentUser": "Current user (you):"
+    },
+    "Messages": {
+      "noChannelSelected": "Select a Channel",
+      "noMessagesInChannel": "It's a little empty here.",
+      "enterMessage": "Enter message here.",
+      "submit": "SUBMIT"
     }
   }
 }

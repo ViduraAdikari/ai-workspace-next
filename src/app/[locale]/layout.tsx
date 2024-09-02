@@ -12,7 +12,7 @@ const roboto = Roboto_Slab({
 
 export const metadata: Metadata = {
   title: "AI Workspace",
-  description: "Workspace chat app to communicate with text messages among the teammates using channels.",
+  description: "Workspace chat app to communicate with text providers among the teammates using channels.",
 };
 
 export function generateStaticParams() {

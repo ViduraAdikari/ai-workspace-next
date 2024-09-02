@@ -2,27 +2,27 @@
 
 import React, {FC} from "react";
 import {useAppSelector} from "@/store/hooks";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
+import ChannelToolbar from "@/cartons/workspace/ChannelToolbar";
+import {IChannel} from "@/store/features/workspace/workspaceReducerTypes";
+import {ChannelMessageProvider} from "@/cartons/workspace/providers/useChannelData";
+import MessageMain from "@/cartons/workspace/messages/MessageMain";
 
 const ChannelMessaging: FC = () => {
   const channels: IChannel[] | null = useAppSelector(state => state.workspace.channels);
   const selectedChannel: IChannel | undefined = channels ?
     channels.find((channel: IChannel) => channel.isSelected) : undefined;
 
-  if (!selectedChannel) {
-    return null;
-  }
+  const messagesNode = selectedChannel ?
+    <ChannelMessageProvider value={{channelID: selectedChannel.id, messages: selectedChannel.messages}}>
+      <MessageMain/>
+    </ChannelMessageProvider>
+    : <React.Fragment/>;
 
   return (
-    <Stack>
-      <Typography variant="h5" sx={{
-        borderBottom: "1px solid",
-        display: "inline",
-      }}>
-        {selectedChannel.name}
-      </Typography>
-    </Stack>
+    <React.Fragment>
+      <ChannelToolbar channelName={selectedChannel && selectedChannel.name}/>
+      {messagesNode}
+    </React.Fragment>
   )
 }
 

@@ -13,7 +13,7 @@ export type DashboardLayoutProps = {
   navBarDictionary: HomeNavbarDictionary
 }
 
-const DashboardStoreWrapper: FC<DashboardLayoutProps> = (props: PropsWithChildren<DashboardLayoutProps>) => {
+const HomeStoreWrapper: FC<DashboardLayoutProps> = (props: PropsWithChildren<DashboardLayoutProps>) => {
 
   const {children, ...otherProps} = props;
 
@@ -26,4 +26,4 @@ const DashboardStoreWrapper: FC<DashboardLayoutProps> = (props: PropsWithChildre
   )
 };
 
-export default DashboardStoreWrapper;
+export default HomeStoreWrapper;

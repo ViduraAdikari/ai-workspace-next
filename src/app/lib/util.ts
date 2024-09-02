@@ -1,5 +1,5 @@
-import {AvatarIcon, IGuest} from "@/types/types";
 import {avatarIcons} from "@/const/avatarIcons";
+import {AvatarIcon, IGuest} from "@/store/features/workspace/workspaceReducerTypes";
 
 /**
  * is the element in the const array
