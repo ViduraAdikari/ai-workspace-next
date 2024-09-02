@@ -1,3 +1,5 @@
+import moment from "moment";
+
 /**
  * return error message by given http status code.
  * @param statusCode
@@ -12,4 +14,14 @@ export const getErrorMessageByCode = (statusCode: number): string => {
     case 503: return "Service Unavailable. Try again later."
     default: return "Error!"
   }
+}
+
+/**
+ * format Date to given date time format string
+ * customize format using the table in url: https://momentjs.com/docs/#/displaying/
+ * @param date
+ * @param formatPattern
+ */
+export const getFormattedDate = (date: Date, formatPattern: string = 'MMM DD, YYYY') => {
+  return moment(date).format(formatPattern);
 }

@@ -1,3 +1,5 @@
+import {IChannel, IMessage} from "@/store/features/workspace/workspaceReducerTypes";
+
 /**
  * sets selected channel's isSelected to ture
  * @param channelID
@@ -15,4 +17,22 @@ const updateSelectedChannel = (channelID: string, channels: IChannel[]): IChanne
   return channels;
 }
 
-export {updateSelectedChannel};
+/**
+ * add new message to channel local state before remote refresh.
+ * @param channels
+ * @param channelID
+ * @param newMessage
+ */
+const addMessagesToChannel = (channels: IChannel[], channelID: string, newMessage: IMessage): IChannel[] => {
+  const updatedChannel: IChannel | undefined = channels.find((channel: IChannel) => channel.id === channelID);
+  if (!updatedChannel) {
+    return channels;
+  }
+
+  const allMessages = updatedChannel.messages ? updatedChannel.messages.slice() : [];
+  allMessages.push(newMessage);
+  updatedChannel.messages = allMessages;
+  return channels;
+}
+
+export {updateSelectedChannel, addMessagesToChannel};

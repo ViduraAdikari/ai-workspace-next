@@ -37,6 +37,12 @@
     },
     "User": {
       "currentUser": "ඇතුලත් වූ අය (ඔබ):"
+    },
+    "Messages": {
+      "noChannelSelected": "නා ලිකා වක් තෝ රා  ගන්න",
+      "noMessagesInChannel": "නා ලිකා ව හිස්නෙ. කණ්ඩා යමට චැ ට් එකක් දා මුද?",
+      "enterMessage": "චැ ට් එක ටයිප් කරන්න",
+      "submit": "යවන්න"
     }
   }
 }

@@ -130,7 +130,7 @@ export const darkThemeOptions: ThemeOptions = {
     secondary: {
       main: blue[500],
       light: blue[300],
-      dark: cyan[700],
+      dark: cyan[800],
       contrastText: grey[50]
     },
   },

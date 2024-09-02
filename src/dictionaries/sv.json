@@ -37,6 +37,12 @@
     },
     "User": {
       "currentUser": "nuvarande användare (du):"
+    },
+    "Messages": {
+      "noChannelSelected": "Välj en kanal",
+      "noMessagesInChannel": "Det är lite tomt här.",
+      "enterMessage": "skriv meddelande här.",
+      "submit": "överlämna"
     }
   }
 }

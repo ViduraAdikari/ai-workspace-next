@@ -4,7 +4,7 @@ import {unstable_setRequestLocale} from "next-intl/server";
 import {cookies} from "next/headers";
 import {useTranslations} from "next-intl";
 import {HomeNavbarDictionary} from "@/components/Navbar/NavbarHome";
-import DashboardStoreWrapper from "@/app/lib/HomeStoreWrapper";
+import HomeStoreWrapper from "@/app/lib/HomeStoreWrapper";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({locale}));
@@ -26,10 +26,10 @@ export default function HomeRootLayout({children, params: {locale}}: {
   }
 
   return (
-    <DashboardStoreWrapper cookieTheme={theme?.value as ("dark" | "light")}
-                           locale={locale}
-                           navBarDictionary={navDictionary}>
+    <HomeStoreWrapper cookieTheme={theme?.value as ("dark" | "light")}
+                      locale={locale}
+                      navBarDictionary={navDictionary}>
       {children}
-    </DashboardStoreWrapper>
+    </HomeStoreWrapper>
   )
 }

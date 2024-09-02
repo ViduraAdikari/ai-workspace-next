@@ -1,3 +1,4 @@
 import NameLabel from "./NameLabel";
+import DateLabel from "./DateLabel";
 
-export default NameLabel;
+export {NameLabel, DateLabel};

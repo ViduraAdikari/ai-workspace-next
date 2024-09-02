@@ -3,10 +3,10 @@
 import React, {PropsWithChildren} from "react";
 import Stack from "@mui/material/Stack";
 import {Typography} from "@mui/material";
-import {IGuest} from "@/types/types";
 import {useAppSelector} from "@/store/hooks";
 import Avatar from "@/components/Avatar";
-import NameLabel from "@/components/Labels";
+import {IGuest} from "@/store/features/workspace/workspaceReducerTypes";
+import {NameLabel} from "@/components/Labels";
 
 type CurrentUserProps = {
   title: string
