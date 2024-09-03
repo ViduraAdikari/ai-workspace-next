@@ -1,3 +1,5 @@
+import {IconsName} from "@/const/avatarIcons";
+
 interface IChannel {
   id: string
   name: string
@@ -22,6 +24,7 @@ interface IMessage {
 interface IGuest {
   id: string
   nickname: string
+  iconName?: IconsName
   avatar?: AvatarIcon
 }
 

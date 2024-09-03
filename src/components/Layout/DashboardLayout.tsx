@@ -12,7 +12,7 @@ import Drawer from "@mui/material/Drawer";
 import ThemeSwitch from "@/components/Switch";
 import {styled, Theme, ThemeProvider} from "@mui/material/styles";
 import Logo from "@/components/Logo";
-import {DRAWER_WIDTH, MOBILE_MAX_SCREEN_WIDTH} from "@/const/values";
+import {AUTH_FRONT_API, DRAWER_WIDTH, HOME_LINK, MOBILE_MAX_SCREEN_WIDTH} from "@/const/values";
 import Stack from "@mui/material/Stack";
 import AppBar from "@mui/material/AppBar";
 import {getTheme} from "@/util/theme/Theme";
@@ -27,6 +27,7 @@ import {useAppDispatch, useAppSelector} from "@/store/hooks";
 import {setIsDrawerOpen} from "@/store/features/workspace/workspaceSlice";
 import {ApolloProvider} from "@apollo/client";
 import {getApolloClient} from "@/app/lib/getApolloClient";
+import {useRouter} from "@/localize/navigation";
 
 export const headerHeight = 64;
 
@@ -86,6 +87,8 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
 
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
+
   const [isDark, setIsDark] = useState(cookieTheme === "dark");
 
   useEffect(() => {
@@ -109,6 +112,14 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
 
   const handleOnThemeChange = (isDarkTheme: boolean) => {
     setIsDark(isDarkTheme);
+  }
+
+  const handleLogout = async () => {
+    await fetch(AUTH_FRONT_API, {
+      method: "DELETE",
+    });
+
+    router.push(HOME_LINK);
   }
 
   const theme: Theme = React.useMemo(() => {
@@ -183,9 +194,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = (props: PropsWithChildre
 
                     <ThemeSwitch onChange={handleOnThemeChange} isChecked={isDark}
                                  dictionaryTitle={switchThemeLocale}/>
-                    <Box title="Logout" sx={{pt: 1, cursor: "pointer"}}
-                      // onClick={handleLogout}
-                    >
+                    <Box title="Logout" sx={{pt: 1, cursor: "pointer"}} onClick={handleLogout}>
                       <PowerSettingsNewIcon/>
                     </Box>
                   </Stack>

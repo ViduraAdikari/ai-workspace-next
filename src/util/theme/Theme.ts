@@ -1,5 +1,5 @@
 import {createTheme, Theme, ThemeOptions} from "@mui/material/styles";
-import {blue, blueGrey, cyan, grey, teal} from "@mui/material/colors";
+import {blue, blueGrey, cyan, grey, purple, teal} from "@mui/material/colors";
 import {makeResponsive} from "./themeUtil";
 import {isRoundedBorders} from "@/const/values";
 
@@ -150,15 +150,15 @@ export const lightThemeOptions: ThemeOptions = {
       paper: grey[100]
     },
     primary: {
-      main: blue[700],
-      light: blue[200],
-      dark: blue[800],
-      contrastText: grey[50]
-    },
-    secondary: {
-      main: cyan[600],
+      main: cyan[500],
       light: cyan[300],
       dark: cyan[800],
+      contrastText: grey[100]
+    },
+    secondary: {
+      main: purple[600],
+      light: purple[300],
+      dark: purple[800],
       contrastText: grey[100]
     },
     common: {

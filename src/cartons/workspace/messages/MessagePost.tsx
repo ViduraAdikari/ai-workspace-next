@@ -6,6 +6,7 @@ import {IGuest, IMessage} from "@/store/features/workspace/workspaceReducerTypes
 import Avatar from "@/components/Avatar";
 import {DateLabel, NameLabel} from "@/components/Labels";
 import Message from "@/components/Paragraphs";
+import {avatars} from "@/const/avatarIcons";
 
 type MessagePostProps = {
   message: IMessage
@@ -31,14 +32,14 @@ const MessagePost: React.FC<MessagePostProps> = (props: PropsWithChildren<Messag
 
   return (
     <Stack direction="row" sx={{mb: 3}}>
-      {guest.avatar && <Avatar avatarIcon={guest.avatar}/>}
+      {guest.iconName && <Avatar avatarIcon={avatars[guest.iconName]}/>}
       <Stack sx={{
         px: 2,
       }}>
 
         <Stack direction="row">
           <NameLabel text={guest.nickname}/>
-          <DateLabel date={message.time}/>
+          <DateLabel date={new Date(message.time)}/>
           {renderInProgress()}
         </Stack>
 

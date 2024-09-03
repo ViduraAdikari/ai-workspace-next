@@ -40,6 +40,7 @@
     },
     "Messages": {
       "noChannelSelected": "Välj en kanal",
+      "errorFetching": "Det gick inte att hämta kanaldata",
       "noMessagesInChannel": "Det är lite tomt här.",
       "enterMessage": "skriv meddelande här.",
       "submit": "överlämna"

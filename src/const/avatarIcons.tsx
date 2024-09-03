@@ -28,4 +28,34 @@ const avatarIcons: AvatarIcon[] = [
   {icon: windTurbine, color: BackgroundColors.RadiantYellow, alt: "Renewable Energy Wind Turbine"},
 ];
 
-export {avatarIcons};
+export enum IconsName {
+  baggage = "baggage",
+  beachPalmSunbed = "beachPalmSunbed",
+  beachSunbed = "beachSunbed",
+  fastFoodBurgerDrink = "fastFoodBurgerDrink",
+  colosseum = "colosseum",
+  londonEye = "londonEye",
+  londonTower = "londonTower",
+  merlion = "merlion",
+  mountain = "mountain",
+  windmill = "windmill",
+  battery = "battery",
+  windTurbine = "windTurbine",
+}
+
+const avatars: Record<IconsName, AvatarIcon> = {
+  baggage: avatarIcons[0],
+  beachPalmSunbed: avatarIcons[1],
+  beachSunbed: avatarIcons[2],
+  fastFoodBurgerDrink: avatarIcons[3],
+  colosseum: avatarIcons[4],
+  londonEye: avatarIcons[5],
+  londonTower: avatarIcons[6],
+  merlion: avatarIcons[7],
+  mountain: avatarIcons[8],
+  windmill: avatarIcons[9],
+  battery: avatarIcons[10],
+  windTurbine: avatarIcons[11],
+}
+
+export {avatarIcons, avatars};

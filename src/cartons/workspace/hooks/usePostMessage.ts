@@ -27,7 +27,8 @@ export const usePostMessage = (isSubmitted: boolean, channelId: string, message:
           id: message.id,
           text: message.text,
           time: (new Date(message.time)).getTime(),
-          user: {...message.user, avatar: {...message.user.avatar, icon: message.user.avatar?.icon.src}},
+          // user: {...message.user, avatar: {...message.user.avatar, icon: message.user.avatar?.icon.src}},
+          user: {...message.user, iconName: message.user.iconName, avatar: undefined},
         }
       }
     });

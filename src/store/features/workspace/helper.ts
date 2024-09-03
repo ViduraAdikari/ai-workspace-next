@@ -61,4 +61,22 @@ const setMessageRemoteStatus = (channels: IChannel[], channelID: string, remoteM
   return channels;
 }
 
-export {updateSelectedChannel, addMessagesToChannel, setMessageRemoteStatus};
+/**
+ * update messages in channel from remote
+ * @param channels
+ * @param channelID
+ * @param messages
+ */
+const updateMessagesInChannel = (channels: IChannel[], channelID: string, messages: IMessage[] | null):
+  IChannel[] => {
+  const updatedChannelIndex: number = channels.findIndex((channel: IChannel) => channel.id === channelID);
+
+  if (updatedChannelIndex < 0) {
+    return channels;
+  }
+
+  channels[updatedChannelIndex].messages = messages ? messages : undefined;
+  return channels;
+}
+
+export {updateSelectedChannel, addMessagesToChannel, setMessageRemoteStatus, updateMessagesInChannel};
