@@ -4,7 +4,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Toolbar from "@mui/material/Toolbar";
 
 export type DrawerItem = {
@@ -30,7 +29,8 @@ const ItemList: FC<ItemListProps> = (props: PropsWithChildren<ItemListProps>) =>
   return (
     <Box>
       <Toolbar sx={{
-        bgcolor: theme => theme.palette.secondary.dark,
+        bgcolor: theme => theme.palette.primary.dark,
+        color: theme => theme.palette.secondary.contrastText,
       }}>
         {itemListTitle}
       </Toolbar>

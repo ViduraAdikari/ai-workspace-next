@@ -1,4 +1,4 @@
-import {avatarIcons} from "@/const/avatarIcons";
+import {avatars, IconsName} from "@/const/avatarIcons";
 import {AvatarIcon, IGuest} from "@/store/features/workspace/workspaceReducerTypes";
 
 /**
@@ -13,8 +13,10 @@ export function isInConstArray<T>(values: readonly T[], val: any): val is T {
 /**
  * creates an Avatar with random icon and color from our icon, color library and returns.
  */
-export const createAvatar = (): AvatarIcon => {
-  return avatarIcons[Math.floor(Math.random() * avatarIcons.length)];
+export const createAvatar = (): [IconsName, AvatarIcon] => {
+  const random = Math.floor(Math.random() * Object.keys(IconsName).length);
+  const iconName: IconsName = Object.keys(IconsName)[random] as IconsName;
+  return [iconName, avatars[iconName]];
 }
 
 /**
@@ -22,7 +24,7 @@ export const createAvatar = (): AvatarIcon => {
  * @param nickname
  */
 export const createGuest = (nickname: string): IGuest => {
-  const avatarIcon: AvatarIcon = createAvatar();
-  return {id: new Date().getTime() + '', nickname: nickname, avatar: avatarIcon};
+  const [iconName, avatarIcon] = createAvatar();
+  return {id: new Date().getTime() + '', nickname: nickname, iconName: iconName, avatar: avatarIcon};
 }
 

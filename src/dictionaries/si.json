@@ -40,6 +40,7 @@
     },
     "Messages": {
       "noChannelSelected": "නා ලිකා වක් තෝ රා  ගන්න",
+      "errorFetching": "නා ලිකා  දත්ත ලබා ගැ නීමේ දෝෂයකි",
       "noMessagesInChannel": "නා ලිකා ව හිස්නෙ. කණ්ඩා යමට චැ ට් එකක් දා මුද?",
       "enterMessage": "චැ ට් එක ටයිප් කරන්න",
       "submit": "යවන්න"

@@ -62,7 +62,7 @@ const Editor: React.FC = () => {
     if (!isSubmitted || !newMessage) {
       return;
     }
-    // preview set to client until added to remote
+    // message preview set to client until added to remote
     dispatch(setNewMessage({channelID: channelID,
       message: {...newMessage, time: time.getTime(), isClientOnly: true}}));
   }, [isSubmitted]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -75,7 +75,6 @@ const Editor: React.FC = () => {
     if (!newMessage) {
       return;
     }
-    // dispatch(setNewMessage({channelID: channelID, message: {...newMessage, isClientOnly: true}}));
     setIsSubmitted(true);
   }
 

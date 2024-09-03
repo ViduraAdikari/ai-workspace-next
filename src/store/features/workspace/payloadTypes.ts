@@ -16,3 +16,8 @@ export interface ISetNewMessagePayload {
   channelID: string
   message: IMessage
 }
+
+export interface ISetMessagesPayload {
+  channelID: string
+  messages: IMessage[] | null
+}

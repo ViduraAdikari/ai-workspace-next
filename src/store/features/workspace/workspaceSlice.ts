@@ -2,11 +2,16 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {
   INickNamePayload,
   ISelectedChannelPayload,
-  ISetChannelsPayload,
+  ISetChannelsPayload, ISetMessagesPayload,
   ISetNewMessagePayload
 } from "@/store/features/workspace/payloadTypes";
 import {createGuest} from "@/app/lib/util";
-import {addMessagesToChannel, setMessageRemoteStatus, updateSelectedChannel} from "@/store/features/workspace/helper";
+import {
+  addMessagesToChannel,
+  setMessageRemoteStatus,
+  updateMessagesInChannel,
+  updateSelectedChannel
+} from "@/store/features/workspace/helper";
 import {WorkspaceState} from "@/store/features/workspace/workspaceReducerTypes";
 
 const initialState: WorkspaceState = {
@@ -49,6 +54,14 @@ export const workspaceSlice = createSlice({
 
       state.channels = setMessageRemoteStatus(state.channels.slice(), action.payload.channelID, action.payload.message);
     },
+    setMessages: (state, action: PayloadAction<ISetMessagesPayload>) => {
+      if (!state.channels) {
+        return;
+      }
+
+      state.channels = updateMessagesInChannel(state.channels.slice(), action.payload.channelID,
+        action.payload.messages);
+    },
   }
 });
 
@@ -58,7 +71,8 @@ export const {
   setChannels,
   setSelectedChannel,
   setNewMessage,
-  updateMessageRemoteStatus
+  updateMessageRemoteStatus,
+  setMessages,
 } = workspaceSlice.actions;
 
 export default workspaceSlice.reducer;
