@@ -18,6 +18,7 @@ const Signin: FC<SigninProps> = (props: PropsWithChildren<SigninProps>) => {
   const dispatch = useAppDispatch();
 
   const [authInputValues, setAuthInputValues] = useState<SigninFormValues | null>(null);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const {loading, error, data} = useAuthLogin(authInputValues);
 
@@ -35,11 +36,12 @@ const Signin: FC<SigninProps> = (props: PropsWithChildren<SigninProps>) => {
     }
 
     dispatch(setGuestNickName({nickname: data.displayName}));
+    setIsRedirecting(true);
     handleRedirect();
   }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <GuestForm isDataLoading={loading}
+    <GuestForm isDataLoading={loading || isRedirecting}
                authError={error}
                onSigninSubmit={handleOnSubmit}/>
   )
