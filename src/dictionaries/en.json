@@ -1,0 +1,49 @@
+{
+  "Navbar": {
+    "translate": "Select Language",
+    "switchTheme": "Switch Theme"
+  },
+  "Home": {
+    "workspace": "Workspace",
+    "toDashboard": "To Dashboard",
+    "Metadata": {
+      "title": "AI Workspace | Home",
+      "description": "Workspace chat app to communicate with text messages among the teammates using channels."
+    },
+    "title": "AI Workspace",
+    "subTitle": "Team message board for workspace.",
+    "GuestForm": {
+      "nameInputLabel": "Enter your name",
+      "nameInputPlaceholder": "Nickname",
+      "nameMin": "Nickname must be at least 3 characters",
+      "nameMax": "Nickname must be at most 20 characters",
+      "submitButton": "NEXT",
+      "helperText": "A name required to begin."
+    }
+  },
+  "DashboardNavLinks": {
+    "home": "Workspace"
+  },
+  "DashboardActions": {
+    "closeSideBar": "Close Sidebar"
+  },
+  "Workspace": {
+    "Metadata": {
+      "title": "AI Workspace | Workspace",
+      "description": "Workspace chat app channels and messaging area for collaboration and get it done."
+    },
+    "Channels": {
+      "channels": "Channels:"
+    },
+    "User": {
+      "currentUser": "Current user (you):"
+    },
+    "Messages": {
+      "noChannelSelected": "Select a Channel",
+      "errorFetching": "Error fetching channel data",
+      "noMessagesInChannel": "It's a little empty here.",
+      "enterMessage": "Enter message here.",
+      "submit": "SUBMIT"
+    }
+  }
+}

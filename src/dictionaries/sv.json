@@ -1,0 +1,49 @@
+{
+  "Navbar": {
+    "translate": "Välj språk",
+    "switchTheme": "tema"
+  },
+  "Home": {
+    "workspace": "Välkommen",
+    "toDashboard": "Välkommen",
+    "Metadata": {
+      "title": "AI Workspace | Välkommen",
+      "description": "Workspace-chattapp för att kommunicera med textmeddelanden mellan lagkamraterna med hjälp av kanaler."
+    },
+    "title": "AI Arbetsyta",
+    "subTitle": "Team anslagstavla för arbetsyta.",
+    "GuestForm": {
+      "nameInputLabel": "Ange ditt namn",
+      "nameInputPlaceholder": "Smeknamn",
+      "nameMin": "Smeknamn måste bestå av minst 3 tecken",
+      "nameMax": "Smeknamn får vara högst 20 tecken",
+      "submitButton": "Skicka in",
+      "helperText": "Ett namn som krävs för att börja."
+    }
+  },
+  "DashboardNavLinks": {
+    "home": "Arbetsyta"
+  },
+  "DashboardActions": {
+    "closeSideBar": "Stäng sidofältet"
+  },
+  "Workspace": {
+    "Metadata": {
+      "title": "AI Workspace | Workspace",
+      "description": "Workspace chat app channels and messaging area for collaboration and get it done."
+    },
+    "Channels": {
+      "channels": "Kanaler:"
+    },
+    "User": {
+      "currentUser": "nuvarande användare (du):"
+    },
+    "Messages": {
+      "noChannelSelected": "Välj en kanal",
+      "errorFetching": "Det gick inte att hämta kanaldata",
+      "noMessagesInChannel": "Det är lite tomt här.",
+      "enterMessage": "skriv meddelande här.",
+      "submit": "överlämna"
+    }
+  }
+}
