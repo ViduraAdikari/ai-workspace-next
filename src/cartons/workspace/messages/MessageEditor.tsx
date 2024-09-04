@@ -26,7 +26,7 @@ const MessageEditor: React.FC<MessageEditorProps> = (props: MessageEditorProps) 
 
   useEffect(() => {
     setInputRefFocus();
-  }, [toggleFocus]);
+  }, [toggleFocus]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onMessageChange(event.target.value);

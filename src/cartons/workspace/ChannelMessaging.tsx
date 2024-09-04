@@ -21,9 +21,6 @@ const ChannelMessaging: FC = () => {
   const {remoteMessages, updatedChannel, error} = useMessages(selectedChannelID);
 
   useEffect(() => {
-    console.log("updatedChannel", updatedChannel);
-    console.log("remoteMessages", remoteMessages);
-
     if (updatedChannel === undefined) {
       return;
     }

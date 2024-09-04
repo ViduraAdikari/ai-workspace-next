@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 import Box from "@mui/material/Box";
-import {AvatarIcon} from "@/types/types";
 import Image from "next/image";
+import {AvatarIcon} from "@/store/features/workspace/workspaceReducerTypes";
 
 type AvatarProps = {
   avatarIcon: AvatarIcon
