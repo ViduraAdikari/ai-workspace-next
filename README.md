@@ -1,12 +1,17 @@
 
 ## Motivation
-Workspace message exchange app frontend coded with Nextjs and React for 
+Workspace message exchange prototype app frontend coded with Nextjs and React for 
 you to understand how I build robust applications using these libraries and frameworks.  
 
 `Nextjs` `Reactjs` `Redux` `i18n` `Typescript` `GraphQL` `Mui` `formik` `testing-library`
 
-This is the frontend repo. 
+Working app can be run within just a few minutes with no database setup.
 
+Backend data runs on globals so that no db setup is required.
+
+Check the `Project setup` section below in this README.
+
+This is the frontend repo.
 If you were looking for the backend: (https://github.com/ViduraAdikari/ai-workspace-backend-nest)
 
 ## How it works?
@@ -44,12 +49,12 @@ backend data runs on globals so that no db setup required.
 
 - Clone the repo.
 - Setup *env* file.
-  - crate the a file *.env.development* in the project dir and add these values:
+  - create a file *.env.development* in the project dir and add these values:
     NEXT_SERVER_API_URL=http://localhost:4400/
     NEXT_PUBLIC_API_URL=http://localhost:4400/
 - Install dependencies.
-- Run the backend.
-- Run the frontend.
+- Run the [backend](https://github.com/ViduraAdikari/ai-workspace-backend-nest).
+- Run this frontend.
 - Start messaging.
 
 
@@ -102,3 +107,5 @@ You can buy them in [streamline](https://www.streamlinehq.com/) just like I did.
 
 It would be lovely to hear your feedback.
 Don't hesitate to reach out. ❤
+
+- Author - [Vidura Adikari](https://www.viduraadikari.com/)
